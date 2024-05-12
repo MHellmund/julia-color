@@ -1,0 +1,17 @@
+title: Julia-color
+author: Meik Hellmund
+version: 1.0.0
+quarto-required: ">=99.9.0"
+contributes:
+  formats:
+    common:
+      filters:
+        - "ansi2htmltex.lua"
+    html:
+      monofont: "JuliaMono"
+      css:
+        - "resources/css/ansicolor.css"
+        - "resources/css/juliamono.css"
+    pdf:
+      include-in-header:
+       - "resources/tex/juliainc.tex"

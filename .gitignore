@@ -1,0 +1,8 @@
+*~
+.luarc.json
+example_files/
+example.html
+example.quarto_ipynb
+example.tex
+auto/
+*.md
