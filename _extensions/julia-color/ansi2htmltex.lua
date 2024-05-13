@@ -132,11 +132,11 @@ local function Typstconverter(fg, bg, bold, light, italic, underline, inverse)
     end
 
     if type(bg) == "number" then
-        starttag = "show: c => highlight(fill:" .. ANSI_COLORS[bg+1] .. ",c);" .. starttag
+        starttag = "show: c => invertbox(" .. ANSI_COLORS[bg+1] .. ",c);" .. starttag
     elseif type(bg) == "table" then
-        starttag = string.format("show: c => highlight(fill:rgb(%d,%d,%d),c);", bg[1], bg[2], bg[3]) .. starttag
+        starttag = string.format("show: c => invertbox(rgb(%d,%d,%d),c);", bg[1], bg[2], bg[3]) .. starttag
     elseif inverse then
-        starttag = "show: c => highlight(fill:ansi-default-inverse-bg ,c);" .. starttag
+        starttag = "show: c => invertbox(ansi-default-inverse-bg ,c);" .. starttag
     end
 
 

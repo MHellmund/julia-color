@@ -1,14 +1,14 @@
 # Julia Color Extension for Quarto
 
-This extension 
+This extension
 
 - provides support for Jupyter code output cells with ANSI escape sequences and
-- uses the [JuliaMono font](https://juliamono.netlify.app/) as monospaced font. 
+- uses the [JuliaMono font](https://juliamono.netlify.app/) as monospaced font.
 
-It works for 
+It works for
 
 - HTML,
-- LaTeX/PDF output and 
+- LaTeX/PDF output and
 - Typst/PDF output.
 
 (See the `example.qmd` file and the different output files.)

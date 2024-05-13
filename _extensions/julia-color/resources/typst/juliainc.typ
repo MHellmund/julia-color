@@ -1,13 +1,15 @@
 
-#let monofont      = "JuliaMono"
-
+#show raw:           set text(font: "JuliaMono")
 
 // define cell layout
 #let OutputCell = block.with(width:100%, inset: 5pt)
 #let AnsiOutputCell = block.with(width: 100%, inset: 5pt)
 #let StderrOutputCell = block.with(width: 100%, stroke: 1pt + red, inset: 5pt)
 
-#set highlight(top-edge: "ascender", bottom-edge: "descender")
+//#set highlight(top-edge: "ascender", bottom-edge: "descender")
+#let invertbox(color, c) = box(outset: (x: 0.05em, y: 0.25em), fill: color, c)
+
+//https://github.com/typst/typst/discussions/3057q
 
 #let ansi-black          = rgb("#3E424D")
 #let ansi-black-intense  = rgb("#282C36")
