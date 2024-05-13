@@ -120,17 +120,48 @@ end
 
 
 local function Typstconverter(fg, bg, bold, light, italic, underline, inverse)
-    if not (fg or bg or bold or light or italic or underline or inverse) then
-        return "",""
-    end
-
-    local starttag = "#{"
-    local endtag = "}"
+    local starttag = "raw(\""
+    local endtag = "\")"
 
     if inverse then
         fg, bg = bg, fg
     end
-    return starttag, endtag
+
+    if underline then
+        starttag = "show: c => underline(c);" .. starttag
+    end
+
+    if type(bg) == "number" then
+        starttag = "show: c => highlight(fill:" .. ANSI_COLORS[bg+1] .. ",c);" .. starttag
+    elseif type(bg) == "table" then
+        starttag = string.format("show: c => highlight(fill:rgb(%d,%d,%d),c);", bg[1], bg[2], bg[3]) .. starttag
+    elseif inverse then
+        starttag = "show: c => highlight(fill:ansi-default-inverse-bg ,c);" .. starttag
+    end
+
+
+    if type(fg) == "number" then
+        starttag = "set text(fill:" ..  ANSI_COLORS[fg+1] ..");" .. starttag 
+    elseif type(fg) == "table" then
+        starttag = string.format("set text(fill:rgb(%d,%d,%d));", fg[1], fg[2], fg[3]) .. starttag
+    elseif inverse then
+        starttag = "set text(fill: ansi-default-inverse-fg);" .. starttag
+    end
+
+    if italic then
+        starttag = "set text(style:\"italic\");" .. starttag
+    end
+
+    if bold then
+        starttag = "set text(weight:\"bold\");" .. starttag
+    end
+
+    if light then
+        starttag = "set text(weight:\"light\");" .. starttag
+    end
+
+
+    return "#{" .. starttag, endtag.."}"
 end
 
     
@@ -338,7 +369,7 @@ local function codeBlockTrans(e)
         return pandoc.RawBlock(fmt, [[\begin{]]..texenv.."}\n"..out.."\n"..[[\end{]].. texenv .. "}")
     end
     if fmt == 'typst' then
-        return pandoc.RawBlock(fmt, "#"..texenv.."(\""..out.."\"\n)")
+        return pandoc.RawBlock(fmt, "#"..texenv.."[\n"..out.."\n]")
     end
 
 

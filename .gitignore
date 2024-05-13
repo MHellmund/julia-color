@@ -1,8 +1,11 @@
 *~
 .luarc.json
 example_files/
-example.html
+example.typ
 example.quarto_ipynb
 example.tex
 auto/
+.jupyter_cache/
 *.md
+juliainc.pdf
+/.luarc.json

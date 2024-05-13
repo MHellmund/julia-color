@@ -8,10 +8,12 @@ format:
     papersize: a4
     code-block-bg: "#e0e0e0"
     code-block-border-left: "#008000"
+    output-file: "example-latex.pdf"
 
   julia-color-typst: default
 
 execute:
+  cache: true
   preserve-ansi: true
 
 keep-ipynb: true
@@ -72,7 +74,7 @@ end
 
 ## Colored console graphs produced by `Benchmarktools.jl`
 
-```julia
+```{julia}
 using BenchmarkTools
 
 @benchmark sum(rand(1000))
@@ -81,8 +83,10 @@ using BenchmarkTools
 ## Some output using ANSI escape codes
 
 ```{julia}
+println("Some tests:")
 printstyled("- Red ", color=:red)
 printstyled("Green ", color=:green)
+print("Black and ")
 printstyled("Bold underline green\n", color=:green, bold=true, underline=true)
 printstyled("- Normal black for comparison\n")
 printstyled("- Hidden is implemented as light/dimmed\n", hidden=true)
