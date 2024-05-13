@@ -1,18 +1,23 @@
 ---
 title: "An Example"
 format:
-   julia-color-html: default
-   julia-color-pdf:
-     pdf-engine: xelatex
-     papersize: a4
-     code-block-bg: "#e0e0e0"
-     code-block-border-left: "#008000"
+  julia-color-html: default
+
+  julia-color-pdf:
+    pdf-engine: xelatex
+    papersize: a4
+    code-block-bg: "#e0e0e0"
+    code-block-border-left: "#008000"
+
+  julia-color-typst: default
+
 execute:
   preserve-ansi: true
 
 keep-ipynb: true
-keep-tex: true
 keep-md: true
+keep-tex: true
+keep-typ: true
 ---
 
 ## The JuliaMono font
@@ -67,7 +72,7 @@ end
 
 ## Colored console graphs produced by `Benchmarktools.jl`
 
-```{julia}
+```julia
 using BenchmarkTools
 
 @benchmark sum(rand(1000))

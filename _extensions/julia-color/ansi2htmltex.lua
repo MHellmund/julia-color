@@ -118,6 +118,24 @@ local function LaTeXconverter(fg, bg, bold, light, italic, underline, inverse)
     return starttag, endtag
 end
 
+
+local function Typstconverter(fg, bg, bold, light, italic, underline, inverse)
+    if not (fg or bg or bold or light or italic or underline or inverse) then
+        return "",""
+    end
+
+    local starttag = "#{"
+    local endtag = "}"
+
+    if inverse then
+        fg, bg = bg, fg
+    end
+    return starttag, endtag
+end
+
+    
+
+
 local function HTMLconverter(fg, bg, bold, light, italic, underline, inverse)
     if not (fg or bg or bold or light or italic or underline or inverse) then
         return "",""
@@ -184,6 +202,9 @@ local function codeBlockTrans(e)
     elseif quarto.doc.isFormat('html') then
         converter = HTMLconverter
         fmt = 'html'
+    elseif quarto.doc.isFormat('typst') then
+        converter = Typstconverter
+        fmt = 'typst'
     else
         return
     end
@@ -316,6 +337,10 @@ local function codeBlockTrans(e)
     if fmt == 'latex' then
         return pandoc.RawBlock(fmt, [[\begin{]]..texenv.."}\n"..out.."\n"..[[\end{]].. texenv .. "}")
     end
+    if fmt == 'typst' then
+        return pandoc.RawBlock(fmt, "#"..texenv.."(\""..out.."\"\n)")
+    end
+
 
 end
 

@@ -15,3 +15,7 @@ contributes:
     pdf:
       include-in-header:
        - "resources/tex/juliainc.tex"
+
+    typst:   
+      include-in-header:
+       - "resources/typst/juliainc.typ"
